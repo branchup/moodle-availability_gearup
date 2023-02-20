@@ -101,7 +101,7 @@ M.availability_gearup.form = Y.merge(M.core_availability.plugin, {
                 modes: [
                     {value: MODE_IS_RECRUIT, label: M.util.get_string('isrecruit', 'availability_gearup')},
                     {value: MODE_HAS_STARTED, label: M.util.get_string('hasstarted', 'availability_gearup')},
-                    {value: MODE_HAS_COMPLETED, label: M.util.get_string('hascompleted', 'availability_gearup')},
+                    // {value: MODE_HAS_COMPLETED, label: M.util.get_string('hascompleted', 'availability_gearup')},
                     {value: MODE_IS_ASSIGNED, label: M.util.get_string('isassigned', 'availability_gearup')},
                     {value: MODE_IS_STARTED, label: M.util.get_string('isstarted', 'availability_gearup')},
                     {value: MODE_IS_COMPLETED, label: M.util.get_string('iscompleted', 'availability_gearup')},
@@ -131,7 +131,7 @@ M.availability_gearup.form = Y.merge(M.core_availability.plugin, {
             node.one('[name=missionid]').set('value', json.missionid);
         }
 
-        const mode = typeof json.mode === 'undefined' ? MODE_HAS_COMPLETED : json.mode;
+        const mode = typeof json.mode === 'undefined' ? MODE_IS_ENDED : json.mode;
         node.one('[name=mode]').set('value', mode);
 
         return node;
