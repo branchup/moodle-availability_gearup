@@ -26,8 +26,6 @@
 namespace availability_gearup;
 
 use block_gearup\di;
-use core_availability\info_module;
-use core_availability\info_section;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -198,7 +196,46 @@ class condition extends \core_availability\condition {
      * @return stdClass Structure object (ready to be made into JSON format)
      */
     public function save() {
-        return (object) ['missionid' => $this->missionid, 'mode' => $this->mode];
+        // We must include the type, otherwise restores don't work!
+        return (object) ['type' => 'gearup', 'missionid' => $this->missionid, 'mode' => $this->mode];
+    }
+
+    /**
+     * Checks whether this node should be included after restore or not.
+     *
+     * @param string $restoreid Restore ID
+     * @param int $courseid ID of target course
+     * @param \base_logger $logger Logger for any warnings
+     * @param string $name Name of this item (for use in warning messages)
+     * @param \base_task $task Current restore task
+     * @return bool True if there was any change
+     */
+    public function include_after_restore($restoreid, $courseid, \base_logger $logger, $name, \base_task $task) {
+        return true;
+    }
+
+    /**
+     * Updates this node after restore.
+     *
+     * @param string $restoreid Restore ID
+     * @param int $courseid ID of target course
+     * @param \base_logger $logger Logger for any warnings
+     * @param string $name Name of this item (for use in warning messages)
+     * @return bool True if there was any change
+     */
+    public function update_after_restore($restoreid, $courseid, \base_logger $logger, $name) {
+        if (!$this->missionid) {
+            return false;
+        }
+
+        $rec = \restore_dbops::get_backup_ids_record($restoreid, 'block_gearup_mission', $this->missionid);
+        if (!$rec || !$rec->newitemid) {
+            $logger->process('Could not find mapping for mission ' . $this->missionid, \backup::LOG_WARNING);
+        } else {
+            $this->missionid = (int) $rec->newitemid;
+        }
+
+        return true;
     }
 
 }
