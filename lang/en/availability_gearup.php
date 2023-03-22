@@ -26,24 +26,25 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['achievements'] = 'Achievements';
+$string['challenges'] = 'Challenges';
 $string['description'] = 'Access based on the state of quests or achievements.';
-$string['hasstarted'] = 'has started';
 $string['hascompleted'] = 'has been completed';
+$string['hasstarted'] = 'has started';
 $string['isassigned'] = 'is assigned';
 $string['iscompleted'] = 'is completed';
 $string['isended'] = 'is finished';
 $string['isrecruit'] = 'has been recruited for';
 $string['isstarted'] = 'is ongoing';
 $string['mission'] = 'Mission';
-$string['missionxhasstarted'] = '{$a} has started';
 $string['missionxhascompleted'] = '{$a} has been completed';
+$string['missionxhasstarted'] = '{$a} has started';
 $string['missionxisassigned'] = '{$a} is assigned';
 $string['missionxiscompleted'] = '{$a} is completed';
 $string['missionxisended'] = '{$a} is finished';
 $string['missionxisrecruit'] = 'Is recruited for {$a}';
 $string['missionxisstarted'] = '{$a} is ongoing';
-$string['missionxnothasstarted'] = '{$a} has not started';
 $string['missionxnothascompleted'] = '{$a} has not been completed';
+$string['missionxnothasstarted'] = '{$a} has not started';
 $string['missionxnotisassigned'] = '{$a} is not assigned';
 $string['missionxnotiscompleted'] = '{$a} is not completed';
 $string['missionxnotisended'] = '{$a} is not finished';
@@ -57,11 +58,11 @@ $string['setuphelp'] = 'Here is what the various states mean:
 
 - Has been recruited for: will match as long as the user is a recruit, regardless of the state.
 - Has started: the mission must have started, but can be in any subsequent state.
-- Has completed: the mission must have completed, but can be in any subsequent state.
+- Has completed: the mission must have been completed, but can be in any subsequent state.
 - Is assigned: the recruit has only been assigned, the mission has not started yet.
 - Is ongoing: the mission has started and is ongoing.
 - Is completed: the mission is completed, but not yet finished.
 - Is finished: the mission has been finished.
 
-With achievements, please use "has started" or "has completed".';
+With challenges and achievements, use "has started" or "has completed".';
 $string['title'] = 'Level Up Quest';

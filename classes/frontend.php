@@ -27,6 +27,7 @@ namespace availability_gearup;
 
 use block_gearup\di;
 use block_gearup\local\mission\achievement;
+use block_gearup\local\mission\challenge;
 use block_gearup\local\mission\quest;
 use context_course;
 
@@ -61,7 +62,7 @@ class frontend extends \core_availability\frontend {
      * @return array Array of required string identifiers.
      */
     protected function get_javascript_strings() {
-        return ['achievements', 'quests', 'isassigned', 'isstarted', 'iscompleted', 'isended',
+        return ['achievements', 'quests', 'challenges', 'isassigned', 'isstarted', 'iscompleted', 'isended',
             'isrecruit', 'hasstarted', 'hascompleted'];
     }
 
@@ -88,6 +89,12 @@ class frontend extends \core_availability\frontend {
                     return ['id' => $m->get_id(), 'title' => $m->get_title()];
                 }, array_filter($missions, function($mission) {
                     return $mission instanceof quest;
+                })
+            )),
+            'challenges' => array_values(array_map(function($m) {
+                    return ['id' => $m->get_id(), 'title' => $m->get_title()];
+                }, array_filter($missions, function($mission) {
+                    return $mission instanceof challenge;
                 })
             )),
             'helphtml' => markdown_to_html(get_string('setuphelp', 'availability_gearup')),

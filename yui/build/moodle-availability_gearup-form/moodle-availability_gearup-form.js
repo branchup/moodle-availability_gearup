@@ -45,6 +45,11 @@ const TEMPLATE = `
                 <option value="{{ value }}">{{ label }}</option>
                 {{/each}}
             </optgroup>
+            <optgroup label="{{get_string "challenges" "availability_gearup"}}" data-type="quest">
+                {{#each challenges}}
+                <option value="{{ value }}">{{ label }}</option>
+                {{/each}}
+            </optgroup>
         </select>
         <label for="availability_gearup_mode" class="sr-only"></label>
         <select name="mode" id="availability_gearup_mode" class="custom-select">
@@ -61,27 +66,12 @@ const TEMPLATE = `
     </div>
 </div>`;
 
-// var TEMPLATE = '<div>' +
-//     '{{get_string "levelis" "availability_xp"}} ' +
-//     '<label><span class="accesshide sr-only">{{ get_string "levelconditionoperator" "availability_xp" }}</span>' +
-//     '<select name=level class="level-operator custom-select">' +
-//     '<option value="{{ OPERATOR_GTE }}">{{get_string "opgreaterorequalto" "availability_xp"}}</option>' +
-//     '<option value="{{ OPERATOR_EQ }}">{{get_string "opequalto" "availability_xp"}}</option>' +
-//     '</select>' +
-//     '</label>' +
-//     ' ' +
-//     '<label><span class="accesshide sr-only">{{ get_string "levelnumber" "availability_xp" }}</span>' +
-//     '<select name=level class="level-number custom-select">' +
-//     '{{#each levels}}<option value="{{this}}">{{this}}</option>{{/each}}' +
-//     '</select>' +
-//     '</label>' +
-//     '</div>';
-
 M.availability_gearup = M.availability_gearup || {}; // eslint-disable-line
 
 M.availability_gearup.form = Y.merge(M.core_availability.plugin, {
 
     achievements: null,
+    challenges: null,
     quests: null,
     helphtml: null,
     helpiconhtml: null,
@@ -89,6 +79,7 @@ M.availability_gearup.form = Y.merge(M.core_availability.plugin, {
 
     initInner: function(params) {
         this.achievements = params.achievements;
+        this.challenges = params.challenges;
         this.quests = params.quests;
         this.helphtml = params.helphtml;
         this.helpiconhtml = params.helpiconhtml;
@@ -103,13 +94,16 @@ M.availability_gearup.form = Y.merge(M.core_availability.plugin, {
                 modes: [
                     {value: MODE_IS_RECRUIT, label: M.util.get_string('isrecruit', 'availability_gearup')},
                     {value: MODE_HAS_STARTED, label: M.util.get_string('hasstarted', 'availability_gearup')},
-                    // {value: MODE_HAS_COMPLETED, label: M.util.get_string('hascompleted', 'availability_gearup')},
+                    {value: MODE_HAS_COMPLETED, label: M.util.get_string('hascompleted', 'availability_gearup')},
                     {value: MODE_IS_ASSIGNED, label: M.util.get_string('isassigned', 'availability_gearup')},
                     {value: MODE_IS_STARTED, label: M.util.get_string('isstarted', 'availability_gearup')},
-                    {value: MODE_IS_COMPLETED, label: M.util.get_string('iscompleted', 'availability_gearup')},
+                    // {value: MODE_IS_COMPLETED, label: M.util.get_string('iscompleted', 'availability_gearup')},
                     {value: MODE_IS_ENDED, label: M.util.get_string('isended', 'availability_gearup')},
                 ],
                 achievements: this.achievements.map(function(m) {
+                    return { value: m.id, label: m.title };
+                }),
+                challenges: this.challenges.map(function(m) {
                     return { value: m.id, label: m.title };
                 }),
                 quests: this.quests.map(function(m) {
