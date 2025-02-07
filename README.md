@@ -20,7 +20,7 @@ progression of learners in their quests and achievements.
 
 ### Git
 
-Do not clone the `master` branch in a production environment. Branches are reserved for development and should be considered unstable. Instead, please refers to tags to identify the latest stable versions.
+Do not clone the `master` branch in a production environment. Branches are reserved for development and should be considered unstable. Instead, please refer to tags to identify the latest stable versions.
 
 ```
 git tag -l | sort -Vr | head -1
