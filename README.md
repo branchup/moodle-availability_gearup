@@ -18,6 +18,15 @@ progression of learners in their quests and achievements.
 
 ## Installation
 
+### Git
+
+Do not clone the `master` branch in a production environment. Branches are reserved for development and should be considered unstable. Instead, please refers to tags to identify the latest stable versions.
+
+```
+git tag -l | sort -Vr | head -1
+git checkout <tag here>
+```
+
 ### Zip upload
 
 If you have configured Moodle to allow plugin installation from the user interface, and you received a zip of the plugin, follow the following steps. If not, refer to the manual process.
