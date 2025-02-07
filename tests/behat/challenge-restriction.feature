@@ -1,4 +1,4 @@
-@availability @availability_gearup @javascript
+@availability @availability_gearup
 Feature: Testing that activity access can be based on challenges
 
   Background:
@@ -21,76 +21,23 @@ Feature: Testing that activity access can be based on challenges
       | title          | course | instructions       | repeatmode |
       | Challenge 1    | c1     | This is what to do | 0          |
     And the following "activities" exist:
-      | activity | course | name   |
-      | page     | c1     | Page 1 |
-      | page     | c1     | Page 2 |
-      | page     | c1     | Page 3 |
-      | page     | c1     | Page 4 |
-      | page     | c1     | Page 5 |
-      | page     | c1     | Page 6 |
+      | activity | course | name   | idnumber  |
+      | page     | c1     | Page 1 | PAGE1     |
+      | page     | c1     | Page 2 | PAGE2     |
+      | page     | c1     | Page 3 | PAGE3     |
+      | page     | c1     | Page 4 | PAGE4     |
+      | page     | c1     | Page 5 | PAGE5     |
+      | page     | c1     | Page 6 | PAGE6     |
+    And the following "availability_gearup > restrictions" exist:
+      | activity | mission        | mode                  |
+      | PAGE1    | Challenge 1    | hascompleted          |
+      | PAGE2    | Challenge 1    | hasstarted            |
+      | PAGE3    | Challenge 1    | hasbeenrecruitedfor   |
+      | PAGE4    | Challenge 1    | isassigned            |
+      | PAGE5    | Challenge 1    | isongoing             |
+      | PAGE6    | Challenge 1    | isfinished            |
 
-    And I am on the "Page 1" "page activity editing" page logged in as "t1"
-    And I expand all fieldsets
-    And I press "Add restriction..."
-    And I click on "Level Up Quest" "button" in the "Add restriction..." "dialogue"
-    And I click on "Click to hide" "link" in the ".availability-children" "css_element"
-    And I set the following fields in the "Restrict access" "fieldset" to these values:
-      | Mission        | Challenge 1        |
-      | mode           | has been completed |
-    And I press "Save and return to course"
-    And I am on the "c1" "course" page logged in as "s1"
-    And I should not see "Page 1"
-
-    And I am on the "Page 2" "page activity editing" page logged in as "t1"
-    And I expand all fieldsets
-    And I press "Add restriction..."
-    And I click on "Level Up Quest" "button" in the "Add restriction..." "dialogue"
-    And I click on "Click to hide" "link" in the ".availability-children" "css_element"
-    And I set the following fields in the "Restrict access" "fieldset" to these values:
-      | Mission        | Challenge 1        |
-      | mode           | has started        |
-    And I press "Save and return to course"
-
-    And I am on the "Page 3" "page activity editing" page logged in as "t1"
-    And I expand all fieldsets
-    And I press "Add restriction..."
-    And I click on "Level Up Quest" "button" in the "Add restriction..." "dialogue"
-    And I click on "Click to hide" "link" in the ".availability-children" "css_element"
-    And I set the following fields in the "Restrict access" "fieldset" to these values:
-      | Mission        | Challenge 1            |
-      | mode           | has been recruited for |
-    And I press "Save and return to course"
-
-    And I am on the "Page 4" "page activity editing" page logged in as "t1"
-    And I expand all fieldsets
-    And I press "Add restriction..."
-    And I click on "Level Up Quest" "button" in the "Add restriction..." "dialogue"
-    And I click on "Click to hide" "link" in the ".availability-children" "css_element"
-    And I set the following fields in the "Restrict access" "fieldset" to these values:
-      | Mission        | Challenge 1   |
-      | mode           | is assigned   |
-    And I press "Save and return to course"
-
-    And I am on the "Page 5" "page activity editing" page logged in as "t1"
-    And I expand all fieldsets
-    And I press "Add restriction..."
-    And I click on "Level Up Quest" "button" in the "Add restriction..." "dialogue"
-    And I click on "Click to hide" "link" in the ".availability-children" "css_element"
-    And I set the following fields in the "Restrict access" "fieldset" to these values:
-      | Mission        | Challenge 1   |
-      | mode           | is ongoing    |
-    And I press "Save and return to course"
-
-    And I am on the "Page 6" "page activity editing" page logged in as "t1"
-    And I expand all fieldsets
-    And I press "Add restriction..."
-    And I click on "Level Up Quest" "button" in the "Add restriction..." "dialogue"
-    And I click on "Click to hide" "link" in the ".availability-children" "css_element"
-    And I set the following fields in the "Restrict access" "fieldset" to these values:
-      | Mission        | Challenge 1     |
-      | mode           | is finished     |
-    And I press "Save and return to course"
-
+  @javascript
   Scenario: Students access restriction for non-repeating challenges
     Given I am on the "Challenge 1" "block_gearup > challenge recruits" page logged in as "t1"
     And I press "Recruit users"
@@ -105,11 +52,8 @@ Feature: Testing that activity access can be based on challenges
     And I should see "Page 5"
     And I should not see "Page 6"
 
-    And I am on the "c1" "course" page logged in as "t1"
-    And I click on "Manage" "link" in the "Level Up Quest" "block"
-    And I follow "Recruits"
+    And I am on the "Challenge 1" "block_gearup > challenge recruits" page logged in as "t1"
     And I follow "Student One"
-    And I follow "Challenge 1"
     And I choose the "View" item in the "Menu" action menu
     And I press "Increment"
     And I press "Confirm"
@@ -124,6 +68,7 @@ Feature: Testing that activity access can be based on challenges
     And I should not see "Page 5"
     And I should see "Page 6"
 
+  @javascript
   Scenario: Students access restriction for repeating challenges
     Given I am on the "Challenge 1" "block_gearup > challenge" page logged in as "t1"
     And I click on "[data-form-class*=\"timing\"]" "css_element"
