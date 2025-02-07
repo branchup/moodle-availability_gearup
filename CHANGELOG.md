@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v1.2.0
+------
+
+- Behat tests for automated acceptance testing
+- Raised required version of Level Up Quest for behat support
+
 v1.1.0
 ------
 
