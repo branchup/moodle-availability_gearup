@@ -54,7 +54,7 @@ class frontend extends \core_availability\frontend {
      */
     protected function get_javascript_strings() {
         return ['achievements', 'quests', 'challenges', 'isassigned', 'isstarted', 'iscompleted', 'isended',
-            'isrecruit', 'hasstarted', 'hascompleted'];
+            'isrecruit', 'hasstarted', 'hascompleted', 'mission'];
     }
 
     /**
