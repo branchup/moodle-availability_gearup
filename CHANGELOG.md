@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v1.2.1
+------
+
+- Reduced behat tests steps and running time by 75%
+
 v1.2.0
 ------
 
