@@ -42,7 +42,7 @@ class frontend extends \core_availability\frontend {
      * @param \section_info $section Section currently being edited (null if none).
      * @return bool False when adding is disabled.
      */
-    protected function allow_add($course, \cm_info $cm = null, \section_info $section = null) {
+    protected function allow_add($course, ?\cm_info $cm = null, ?\section_info $section = null) {
         $context = context_course::instance($course->id);
         return di::get('repository')->count_missions($context) > 0;
     }
@@ -65,7 +65,7 @@ class frontend extends \core_availability\frontend {
      * @param \section_info $section Section currently being edited (null if none).
      * @return array Array of parameters for the JavaScript function.
      */
-    protected function get_javascript_init_params($course, \cm_info $cm = null, \section_info $section = null) {
+    protected function get_javascript_init_params($course, ?\cm_info $cm = null, ?\section_info $section = null) {
         $context = context_course::instance($course->id);
         $missions = di::get('repository')->get_missions($context);
         $renderer = di::get('renderer');
