@@ -71,25 +71,22 @@ class frontend extends \core_availability\frontend {
         $renderer = di::get('renderer');
         return [(object) [
             'achievements' => array_values(array_map(function($m) {
-                    return ['id' => $m->get_id(), 'title' => $m->get_title()];
-                }, array_filter($missions, function($mission) {
-                    return $mission instanceof achievement;
-                })
-            )),
+                return ['id' => $m->get_id(), 'title' => $m->get_title()];
+            }, array_filter($missions, function($mission) {
+                return $mission instanceof achievement;
+            }))),
             'quests' => array_values(array_map(function($m) {
-                    return ['id' => $m->get_id(), 'title' => $m->get_title()];
-                }, array_filter($missions, function($mission) {
-                    return $mission instanceof quest;
-                })
-            )),
+                return ['id' => $m->get_id(), 'title' => $m->get_title()];
+            }, array_filter($missions, function($mission) {
+                return $mission instanceof quest;
+            }))),
             'challenges' => array_values(array_map(function($m) {
-                    return ['id' => $m->get_id(), 'title' => $m->get_title()];
-                }, array_filter($missions, function($mission) {
-                    return $mission instanceof challenge;
-                })
-            )),
+                return ['id' => $m->get_id(), 'title' => $m->get_title()];
+            }, array_filter($missions, function($mission) {
+                return $mission instanceof challenge;
+            }))),
             'helphtml' => markdown_to_html(get_string('setuphelp', 'availability_gearup')),
-            'helpiconhtml' => $renderer->pix_icon('help', get_string('help', 'core'), 'core')
+            'helpiconhtml' => $renderer->pix_icon('help', get_string('help', 'core'), 'core'),
         ]];
     }
 

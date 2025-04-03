@@ -28,6 +28,11 @@ use block_gearup\local\model\mission;
  */
 class behat_availability_gearup_generator extends behat_generator_base {
 
+    /**
+     * Get creatable entities.
+     *
+     * @return array
+     */
     protected function get_creatable_entities(): array {
         return [
             'restrictions' => [
