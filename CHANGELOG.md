@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v1.2.2
+------
+
+- Compatibility with Moodle 5.0
+- Removal of implicit nullable parameters (PHP 8.4)
+
 v1.2.1
 ------
 
