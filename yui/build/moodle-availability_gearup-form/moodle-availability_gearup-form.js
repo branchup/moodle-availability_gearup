@@ -1,19 +1,21 @@
 YUI.add('moodle-availability_gearup-form', function (Y, NAME) {
 
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Level Up Quest.
 //
-// Moodle is free software: you can redistribute it and/or modify
+// Level Up Quest is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// Moodle is distributed in the hope that it will be useful,
+// Level Up Quest is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Level Up Quest.  If not, see <https://www.gnu.org/licenses/>.
+//
+// https://levelup.plus
 
 /**
  * @package    availability_gearup
@@ -34,7 +36,7 @@ const TEMPLATE = `
 <div class="availability_gearup_frontend">
     <div>
         <label for="availability_gearup_missionid" class="sr-only">{{get_string "mission" "availability_gearup"}}</label>
-        <select name="missionid" id="availability_gearup_missionid" class="custom-select">
+        <select name="missionid" id="availability_gearup_missionid" class="custom-select form-select">
             <optgroup label="{{get_string "quests" "availability_gearup"}}" data-type="quest">
                 {{#each quests}}
                 <option value="{{ value }}">{{ label }}</option>
@@ -52,15 +54,20 @@ const TEMPLATE = `
             </optgroup>
         </select>
         <label for="availability_gearup_mode" class="sr-only"></label>
-        <select name="mode" id="availability_gearup_mode" class="custom-select">
+        <select name="mode" id="availability_gearup_mode" class="custom-select form-select">
             {{#each modes}}
             <option value="{{ value }}">{{ label }}</option>
             {{/each}}
         </select>
         <a class="btn btn-link p-0" role="button"
-            data-container="body" data-toggle="popover"
+            data-container="body"
+            data-bs-toggle="popover"
+            data-toggle="popover"
             data-content="{{ help.text }}"
-            data-html="true" tabindex="0" data-trigger="focus">
+            data-bs-content="{{ help.text }}"
+            data-html="true"
+            data-bs-html="true"
+            tabindex="0" data-trigger="focus">
             {{{ help.icon }}}
         </a>
     </div>
@@ -101,13 +108,13 @@ M.availability_gearup.form = Y.merge(M.core_availability.plugin, {
                     {value: MODE_IS_ENDED, label: M.util.get_string('isended', 'availability_gearup')},
                 ],
                 achievements: this.achievements.map(function(m) {
-                    return { value: m.id, label: m.title };
+                    return {value: m.id, label: m.title};
                 }),
                 challenges: this.challenges.map(function(m) {
-                    return { value: m.id, label: m.title };
+                    return {value: m.id, label: m.title};
                 }),
                 quests: this.quests.map(function(m) {
-                    return { value: m.id, label: m.title };
+                    return {value: m.id, label: m.title};
                 }),
                 help: {
                     text: this.helphtml,

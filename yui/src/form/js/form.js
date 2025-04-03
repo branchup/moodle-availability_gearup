@@ -34,7 +34,7 @@ const TEMPLATE = `
 <div class="availability_gearup_frontend">
     <div>
         <label for="availability_gearup_missionid" class="sr-only">{{get_string "mission" "availability_gearup"}}</label>
-        <select name="missionid" id="availability_gearup_missionid" class="custom-select">
+        <select name="missionid" id="availability_gearup_missionid" class="custom-select form-select">
             <optgroup label="{{get_string "quests" "availability_gearup"}}" data-type="quest">
                 {{#each quests}}
                 <option value="{{ value }}">{{ label }}</option>
@@ -52,15 +52,20 @@ const TEMPLATE = `
             </optgroup>
         </select>
         <label for="availability_gearup_mode" class="sr-only"></label>
-        <select name="mode" id="availability_gearup_mode" class="custom-select">
+        <select name="mode" id="availability_gearup_mode" class="custom-select form-select">
             {{#each modes}}
             <option value="{{ value }}">{{ label }}</option>
             {{/each}}
         </select>
         <a class="btn btn-link p-0" role="button"
-            data-container="body" data-toggle="popover"
+            data-container="body"
+            data-bs-toggle="popover"
+            data-toggle="popover"
             data-content="{{ help.text }}"
-            data-html="true" tabindex="0" data-trigger="focus">
+            data-bs-content="{{ help.text }}"
+            data-html="true"
+            data-bs-html="true"
+            tabindex="0" data-trigger="focus">
             {{{ help.icon }}}
         </a>
     </div>
@@ -101,13 +106,13 @@ M.availability_gearup.form = Y.merge(M.core_availability.plugin, {
                     {value: MODE_IS_ENDED, label: M.util.get_string('isended', 'availability_gearup')},
                 ],
                 achievements: this.achievements.map(function(m) {
-                    return { value: m.id, label: m.title };
+                    return {value: m.id, label: m.title};
                 }),
                 challenges: this.challenges.map(function(m) {
-                    return { value: m.id, label: m.title };
+                    return {value: m.id, label: m.title};
                 }),
                 quests: this.quests.map(function(m) {
-                    return { value: m.id, label: m.title };
+                    return {value: m.id, label: m.title};
                 }),
                 help: {
                     text: this.helphtml,
