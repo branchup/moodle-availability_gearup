@@ -37,7 +37,7 @@ If you have configured Moodle to allow plugin installation from the user interfa
 
 ### Manual process
 
-1. Place the content of this plugin in the folder `availability/condition/gearup`.
+1. Place the content of this plugin in the folder `[public]/availability/condition/gearup`.
 2. Visit your admin's _Notifications_ page (Site administration > Notifications)
 3. Follow the upgrade process
 

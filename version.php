@@ -25,10 +25,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2025040301;
+$plugin->version   = 2025100200;
 $plugin->requires  = 2021051700;    // Moodle 3.11.0.
 $plugin->component = 'availability_gearup';
-$plugin->release   = '1.2.2';
+$plugin->release   = '1.2.3';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->dependencies = [
     'block_gearup' => 2025020700,
