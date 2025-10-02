@@ -70,19 +70,19 @@ class frontend extends \core_availability\frontend {
         $missions = di::get('repository')->get_missions($context);
         $renderer = di::get('renderer');
         return [(object) [
-            'achievements' => array_values(array_map(function($m) {
+            'achievements' => array_values(array_map(function ($m) {
                 return ['id' => $m->get_id(), 'title' => $m->get_title()];
-            }, array_filter($missions, function($mission) {
+            }, array_filter($missions, function ($mission) {
                 return $mission instanceof achievement;
             }))),
-            'quests' => array_values(array_map(function($m) {
+            'quests' => array_values(array_map(function ($m) {
                 return ['id' => $m->get_id(), 'title' => $m->get_title()];
-            }, array_filter($missions, function($mission) {
+            }, array_filter($missions, function ($mission) {
                 return $mission instanceof quest;
             }))),
-            'challenges' => array_values(array_map(function($m) {
+            'challenges' => array_values(array_map(function ($m) {
                 return ['id' => $m->get_id(), 'title' => $m->get_title()];
-            }, array_filter($missions, function($mission) {
+            }, array_filter($missions, function ($mission) {
                 return $mission instanceof challenge;
             }))),
             'helphtml' => markdown_to_html(get_string('setuphelp', 'availability_gearup')),
